@@ -1,0 +1,16 @@
+#!/usr/bin/env lua
+local button = os.getenv('BLOCK_BUTTON') or ''
+if button == '2' then
+	os.execute('light -O')
+elseif button ~= '' then
+	os.execute('light -I')
+end
+
+local fd = assert(io.popen('light'))
+local out = assert(fd:read('*a'))
+out = assert(tonumber(out))
+out = out // 1
+out = string.format('%d%%',out)
+print(out)
+print(out)
+
