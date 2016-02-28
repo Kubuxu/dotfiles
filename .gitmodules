@@ -1,0 +1,6 @@
+[submodule "dircolors-solarized"]
+	path = dircolors-solarized
+	url = git@github.com:huyz/dircolors-solarized.git
+[submodule "j4-make-config"]
+	path = j4-make-config
+	url = https://github.com/Kubuxu/j4-make-config.git
