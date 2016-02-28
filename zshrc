@@ -114,3 +114,4 @@ source "$DOTFILES/dir_colors"
 source $ZSH/oh-my-zsh.sh
 
 zstyle ":completion:*" users kubuxu ksztand
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
