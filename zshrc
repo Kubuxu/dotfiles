@@ -75,6 +75,8 @@ if [[ $ENV_IS_HERE!=yes ]]; then
   export PATH="$HOME/bin:$GOPATH/bin:/usr/local/bin:$PATH"
   export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
   export ENV_IS_HERE="yes"
+
+  export AURDEST="$HOME/AUR/"
 fi
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
@@ -110,8 +112,9 @@ if [[ ! -e "$DOTFILES/dir_colors" ]]; then
 fi
 source "$DOTFILES/dir_colors"
   
-
-source $ZSH/oh-my-zsh.sh
+if [[ ! "$TERM" == "linux" ]]; then
+	source $ZSH/oh-my-zsh.sh
+fi
 
 zstyle ":completion:*" users kubuxu ksztand
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
