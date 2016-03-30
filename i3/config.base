@@ -176,6 +176,7 @@ bar {
 # Assigments
 assign [class="TeamSpeak 3"] $workspace10
 
+exec --no-startup-id setxkbmap -layout pl
 exec --no-startup-id xset r rate 250 30
 #More aggressive behavior, allow for mod+key combos, enable mouse movements
 exec --no-startup-id syndaemon -i 0.2 -K -t -d
@@ -188,6 +189,7 @@ exec --no-startup-id i3-msg 'workspace $workspace1; exec firefox'
 exec --no-startup-id i3-msg 'workspace $workspace2; exec termite; exec termite'
 exec --no-startup-id i3-msg 'workspace $workspace3; exec termite'
 exec --no-startup-id i3-msg 'workspace $workspace1'
+
 
 # Per-application settings
 for_window [class="^Firefox$" title="- Mozilla Firefox$"] border none
