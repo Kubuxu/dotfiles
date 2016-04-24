@@ -5,7 +5,7 @@ ZSH=/usr/share/oh-my-zsh/
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="powerlevel9k"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 DEFAULT_USER="kubuxu"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -111,6 +111,8 @@ if [[ ! -e "$DOTFILES/dir_colors" ]]; then
   dircolors $DOTFILES/dircolors-solarized/dircolors.ansi-dark > "$DOTFILES/dir_colors"
 fi
 source "$DOTFILES/dir_colors"
+source "$DOTFILES/zshaliases"
+source "$DOTFILES/zshfunctions"
   
 if [[ ! "$TERM" == "linux" ]]; then
 	source $ZSH/oh-my-zsh.sh
