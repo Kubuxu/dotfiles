@@ -68,15 +68,16 @@ plugins=(git)
 # fi
 
 if [[ $ENV_IS_HERE!=yes ]]; then
-  export GOPATH="$HOME/go/"
-  export EDITOR="vim"
-  export VISUAL="$EDITOR"    
+	export GOPATH="$HOME/go/"
+	export EDITOR="vim"
+	export VISUAL="$EDITOR"
 
-  export PATH="$HOME/bin:$GOPATH/bin:/usr/local/bin:$PATH"
-  export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-  export ENV_IS_HERE="yes"
+	export PATH="$HOME/bin:$GOPATH/bin:/usr/local/bin:$PATH"
+	export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+	export ENV_IS_HERE="yes"
 
-  export AURDEST="$HOME/AUR/"
+	export AURDEST="$HOME/AUR/"
+	export MAKEFLAGS="-j4"
 fi
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
@@ -102,18 +103,18 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
 
 ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
-  mkdir $ZSH_CACHE_DIR
+	mkdir $ZSH_CACHE_DIR
 fi
 
 DOTFILES="$HOME/dotfiles"
 if [[ ! -e "$DOTFILES/dir_colors" ]]; then
-  echo "Regenerated dircolors"
-  dircolors $DOTFILES/dircolors-solarized/dircolors.ansi-dark > "$DOTFILES/dir_colors"
+	echo "Regenerated dircolors"
+	dircolors $DOTFILES/dircolors-solarized/dircolors.ansi-dark > "$DOTFILES/dir_colors"
 fi
 source "$DOTFILES/dir_colors"
 source "$DOTFILES/zshaliases"
 source "$DOTFILES/zshfunctions"
-  
+
 if [[ ! "$TERM" == "linux" ]]; then
 	source $ZSH/oh-my-zsh.sh
 fi
