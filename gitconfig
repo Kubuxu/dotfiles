@@ -1,0 +1,9 @@
+[user]
+	email = kubuxu@protonmail.ch
+	name = Jakub Sztandera
+[push]
+	default = simple
+[core]
+    attributesfile = ~/.gitattributes
+[receive]
+	fsckObjects = true

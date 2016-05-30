@@ -5,3 +5,7 @@ weather() {
 for fun in 'ssh' 'mosh' 'git'; do
 	alias $fun="ssh-add -l >/dev/null || ssh-add && unalias $fun; $fun"
 done
+
+cd-go() {
+	cd "$GOPATH/src/$1"
+}

@@ -49,7 +49,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git git-flow-avh)
 
 # User configuration
 
@@ -73,6 +73,7 @@ if [[ $ENV_IS_HERE!=yes ]]; then
 	export VISUAL="$EDITOR"
 
 	export PATH="$HOME/bin:$GOPATH/bin:/usr/local/bin:$PATH"
+	fpath=($DOTFILES/zshcompletions $fpath)
 	export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 	export ENV_IS_HERE="yes"
 

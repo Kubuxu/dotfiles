@@ -1,1 +1,3 @@
 alias ipa='ip a'
+alias ports='netstat -tulpn'
+alias sudo='sudo '

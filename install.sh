@@ -8,4 +8,5 @@ ln -s "$DOTFILES/j4-make-config/themes" "$HOME/.config/i3/themes"
 
 ln -s "$DOTFILES/zshrc" "$HOME/.zshrc"
 ln -s "$DOTFILES/zlogin" "$HOME/.zlogin"
+ln -s "$DOTFILES/gitconfig" "$HOME/.gitconfig"
 
