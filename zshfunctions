@@ -1,11 +1,48 @@
+
 weather() {
 	curl -4 wttr.in/$1 | less -Sc
 }
 
-for fun in 'ssh' 'mosh' 'git'; do
+for fun in 'ssh' 'mosh' 'hub'; do
 	alias $fun="ssh-add -l >/dev/null || ssh-add && unalias $fun; $fun"
 done
 
 cd-go() {
 	cd "$GOPATH/src/$1"
+}
+
+gx-set() {
+	jq ".$1=\"$2\"" package.json | ifne sponge package.json
+}
+
+gx-github() {
+	REPO=$(echo $(pwd) | sed -ne 's|^.*/\(github.com/.\)|\1|p')
+	if [[ ! -z ${REPO} ]]; then
+		gx-set author $(echo $REPO | cut -d'/' -f 2)
+		gx-set bugs.URL "https://$REPO/issues"
+	fi
+}
+
+gx-init() {
+	printf 'go\n\n' | gx init
+	gx-github
+}
+
+bak() {
+	for F; do
+		echo "cp" "$F"{,.bak}
+		cp -r "$F"{,.bak}
+	done
+}
+
+unbak() {
+	for F; do
+		NAME=$(basename "$f" .bak)
+		echo "cp -rf" "$NAME"{.bak,}
+		cp -fr "$NAME"{.bak,}
+	done
+}
+
+pingr() {
+	ping $(ip r get 8.8.8.8 | cut -d' ' -f 3)
 }

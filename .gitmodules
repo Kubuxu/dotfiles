@@ -4,3 +4,6 @@
 [submodule "j4-make-config"]
 	path = j4-make-config
 	url = https://github.com/Kubuxu/j4-make-config.git
+[submodule "taskwarrior-solarized"]
+	path = taskwarrior-solarized
+	url = git@github.com:hpainter/taskwarrior-solarized.git

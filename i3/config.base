@@ -175,6 +175,7 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+bindsym $mod+Mod1+l exec "lock"
 
 # $i3-theme-window
 
@@ -199,7 +200,6 @@ exec --no-startup-id xset r rate 250 30
 exec --no-startup-id syndaemon -i 0.2 -K -t -d
 exec --no-startup-id xflux -l 51.1 -g 17
 exec --no-startup-id /usr/bin/xautolock -time 5 -locker /home/kubuxu/bin/lock -detectsleep
-exec --no-startup-id xss-lock /home/kubuxu/bin/lock
 exec --no-startup-id [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
 bindsym $mod+Shift+s exec "/home/kubuxu/bin/ipfs-screencap -c -s"

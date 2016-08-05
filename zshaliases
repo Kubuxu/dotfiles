@@ -1,3 +1,7 @@
 alias ipa='ip a'
+alias git='hub'
 alias ports='netstat -tulpn'
 alias sudo='sudo '
+alias go-ipfs='cd-go github.com/ipfs/go-ipfs'
+alias gff='git flow feature'
+alias clr='clear'

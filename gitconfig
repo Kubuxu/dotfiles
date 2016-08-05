@@ -5,5 +5,11 @@
 	default = simple
 [core]
     attributesfile = ~/.gitattributes
+	excludesfile = /home/kubuxu/.gitignore
 [receive]
 	fsckObjects = true
+[alias]
+    cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop\\|release' | xargs -n 1 git branch -d"
+	dsf = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd "$GIT_PREFIX"; git diff --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
+	cmp = "!git checkout master && git pull"
+	pr = "pull-request"
