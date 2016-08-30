@@ -1,6 +1,7 @@
 [user]
 	email = kubuxu@protonmail.ch
 	name = Jakub Sztandera
+	signingkey = C919C8748A8FFC2B8D3EEEFA9A9AF56F8B3879BA
 [push]
 	default = simple
 [core]
@@ -13,3 +14,5 @@
 	dsf = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd "$GIT_PREFIX"; git diff --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
 	cmp = "!git checkout master && git pull"
 	pr = "pull-request"
+[commit]
+	gpgsign = true

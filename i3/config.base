@@ -17,7 +17,7 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans Mono 9
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -55,9 +55,9 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move left
 bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
@@ -194,12 +194,12 @@ assign [class="TeamSpeak 3"] $workspace10
 assign [class="Steam"] $workspace4
 assign [class="csgo_linux"] $workspace5
 
-exec --no-startup-id setxkbmap -layout pl
+exec --no-startup-id setxkbmap -layout pl -option caps:escape
 exec --no-startup-id xset r rate 250 30
 #More aggressive behavior, allow for mod+key combos, enable mouse movements
 exec --no-startup-id syndaemon -i 0.2 -K -t -d
-exec --no-startup-id xflux -l 51.1 -g 17
-exec --no-startup-id /usr/bin/xautolock -time 5 -locker /home/kubuxu/bin/lock -detectsleep
+#exec --no-startup-id xflux -l 51.1 -g 17
+#exec --no-startup-id /usr/bin/xautolock -time 5 -locker /home/kubuxu/bin/lock -detectsleep
 exec --no-startup-id [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
 bindsym $mod+Shift+s exec "/home/kubuxu/bin/ipfs-screencap -c -s"
