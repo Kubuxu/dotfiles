@@ -69,16 +69,26 @@ plugins=(git gitfast history last-working-dir sudo taskwarrior git-flow-avh hub 
 
 if [[ $ENV_IS_HERE!=yes ]]; then
 	export GOPATH="$HOME/go/"
+	export GOBIN="$GOPATH/bin"
 	export EDITOR="vim"
 	export VISUAL="$EDITOR"
 
-	export PATH="$HOME/bin:$GOPATH/bin:/usr/local/bin:$PATH"
-	fpath=($DOTFILES/zshcompletions $fpath)
+	path+=("$HOME/bin" "$GOPATH/bin" "/usr/local/bin")
+	fpath+=("$DOTFILES/zshcompletions")
 	export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-	export ENV_IS_HERE="yes"
 
 	export AURDEST="$HOME/AUR/"
 	export MAKEFLAGS="-j4"
+
+	# npm
+	NPM_PACKAGES="$HOME/.npm-global"
+	path+=("$NPM_PACKAGES/bin")
+
+	export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+
+
+	export PATH
+	export ENV_IS_HERE="yes"
 fi
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
