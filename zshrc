@@ -84,6 +84,7 @@ if [[ $ENV_IS_HERE!=yes ]]; then
 	NPM_PACKAGES="$HOME/.npm-global"
 	path+=("$NPM_PACKAGES/bin")
 
+	unset MANPATH
 	export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 
 
