@@ -49,7 +49,8 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git gitfast history last-working-dir sudo taskwarrior git-flow-avh hub archlinux common-aliases autojump)
+plugins=(git gitfast history last-working-dir sudo taskwarrior git-flow-avh hub)
+plugins+=(archlinux common-aliases autojump)
 
 # User configuration
 
@@ -73,7 +74,7 @@ if [[ $ENV_IS_HERE!=yes ]]; then
 	export EDITOR="vim"
 	export VISUAL="$EDITOR"
 
-	path+=("$HOME/bin" "$GOPATH/bin" "/usr/local/bin")
+	path=("$HOME/bin" "$GOPATH/bin" "/usr/local/bin" $path)
 	fpath+=("$DOTFILES/zshcompletions")
 	export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
@@ -135,6 +136,12 @@ zstyle ":completion:*" users kubuxu ksztand
 zstyle ':completion:*:*' ignored-patterns '*ORIG_HEAD' # ignore ORIGIN_HEAD, it is annoying
 
 source "$DOTFILES/zshcompinstall"
+
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# fasd
+eval "$(fasd --init auto)"
+

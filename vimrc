@@ -31,6 +31,8 @@ highlight ColorColumn ctermbg=darkgray
 
 " Relative line numbers
 set relativenumber
+" when switching to buffer use already open tabs or open a new one
+set switchbuf=useopen,usetab,newtab
 
 
 
@@ -57,9 +59,9 @@ set scrolloff=5
 set hidden
 
 " Remap jkl; to down-up-left-right
-noremap l h
-noremap ; l
-noremap h ;
+" noremap l h
+" noremap ; l
+" noremap h ;
 
 " Fast saving
 map <Leader>w :w<CR>
@@ -141,6 +143,7 @@ au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 
 au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>m <Plug>(go-metalinter)
 
 let g:go_snippet_engine = "neosnippet"
 let g:go_highlight_operators = 1
@@ -153,6 +156,8 @@ let g:go_auto_type_info = 0
 
 let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
+" let g:go_fmt_options = "-local github"
+
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %

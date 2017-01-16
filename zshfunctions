@@ -46,3 +46,7 @@ unbak() {
 pingr() {
 	ping $(ip r get 8.8.8.8 | cut -d' ' -f 3)
 }
+
+edc() {
+	echo "$@" | dc
+}
