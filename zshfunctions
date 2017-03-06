@@ -50,7 +50,9 @@ pingr() {
 send-terminfo() {
 	ssh "$1" mkdir -p .terminfo/x/
 	scp /usr/share/terminfo/x/xterm-termite "$1:.terminfo/x/"
+}
 
 edc() {
 	echo "$@" | dc
 }
+
