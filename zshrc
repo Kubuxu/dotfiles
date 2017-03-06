@@ -73,7 +73,7 @@ if [[ $ENV_IS_HERE!=yes ]]; then
 	export EDITOR="vim"
 	export VISUAL="$EDITOR"
 
-	path+=("$HOME/bin" "$GOPATH/bin" "/usr/local/bin")
+	path=("$HOME/bin" "$GOPATH/bin" "/usr/local/bin" $path)
 	fpath+=("$DOTFILES/zshcompletions")
 	export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 

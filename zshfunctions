@@ -46,3 +46,9 @@ unbak() {
 pingr() {
 	ping $(ip r get 8.8.8.8 | cut -d' ' -f 3)
 }
+
+send-terminfo() {
+	ssh "$1" mkdir -p .terminfo/x/
+	scp /usr/share/terminfo/x/xterm-termite "$1:.terminfo/x/"
+
+}
