@@ -144,4 +144,6 @@ source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # fasd
 eval "$(fasd --init auto)"
+alias di='fasd -d'
+alias d='dirs -v | head -10'
 
