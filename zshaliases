@@ -10,3 +10,7 @@ alias vimrc='vim ~/.vimrc'
 alias xflux='xflux -l 51.1 -g 17'
 alias cdtemp='cd $(mktemp -d)'
 alias v='f -e vim'
+
+
+# dir aliases
+hash -d go="$HOME/go/src"

@@ -1,4 +1,3 @@
-
 weather() {
 	curl -4 wttr.in/$1 | less -Sc
 }
@@ -6,10 +5,6 @@ weather() {
 for fun in 'ssh' 'mosh' 'hub'; do
 	alias $fun="ssh-add -l >/dev/null || ssh-add && unalias $fun; $fun"
 done
-
-cd-go() {
-	cd "$GOPATH/src/$1"
-}
 
 gx-set() {
 	jq ".$1=\"$2\"" package.json | ifne sponge package.json
