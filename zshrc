@@ -56,7 +56,7 @@ plugins+=(archlinux common-aliases autojump)
 
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
-
+setopt histignorespace
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -125,12 +125,13 @@ if [[ ! -e "$DOTFILES/dir_colors" ]]; then
 	dircolors $DOTFILES/dircolors-solarized/dircolors.ansi-dark > "$DOTFILES/dir_colors"
 fi
 source "$DOTFILES/dir_colors"
-source "$DOTFILES/zshaliases"
-source "$DOTFILES/zshfunctions"
 
 if [[ ! "$TERM" == "linux" ]]; then
 	source $ZSH/oh-my-zsh.sh
 fi
+
+source "$DOTFILES/zshaliases"
+source "$DOTFILES/zshfunctions"
 
 zstyle ":completion:*" users kubuxu ksztand
 zstyle ':completion:*:*' ignored-patterns '*ORIG_HEAD' # ignore ORIGIN_HEAD, it is annoying
