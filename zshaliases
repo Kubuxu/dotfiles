@@ -11,6 +11,12 @@ alias xflux='xflux -l 51.1 -g 17'
 alias cdtemp='cd $(mktemp -d)'
 alias v='f -e vim'
 
+alias gcf='git commit --fixup'
+alias gcaf='git commit -a --fixup'
+alias gcs='git commit --squash'
+alias gcas='git commit -a --squash'
+alias grbiom='git rebase -i origin/master'
+
 
 # dir aliases
 hash -d go="$HOME/go/src"
