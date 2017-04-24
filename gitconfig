@@ -17,3 +17,7 @@
 	fixup = "!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
 [commit]
 	gpgsign = true
+[rebase]
+	autosquash = true
+[rerere]
+	enabled = true
