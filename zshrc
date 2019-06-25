@@ -1,6 +1,5 @@
 # Path to your oh-my-zsh installation.
-ZSH=/usr/share/oh-my-zsh/
-
+ZSH=/usr/share/oh-my-zsh/ 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -50,7 +49,10 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git gitfast history last-working-dir sudo taskwarrior git-flow-avh hub)
-plugins+=(archlinux common-aliases autojump)
+plugins+=(archlinux common-aliases autojump virtualenv virtualenvwrapper)
+
+HISTSIZE=999999999
+SAVEHIST=$HISTSIZE
 
 # User configuration
 
@@ -73,6 +75,8 @@ if [[ $ENV_IS_HERE!=yes ]]; then
 	export GOBIN="$GOPATH/bin"
 	export EDITOR="vim"
 	export VISUAL="$EDITOR"
+	export GO111MODULE=on
+	export GOPROXY='https://proxy.golang.org'
 
 	path=("$HOME/bin" "$GOPATH/bin" "/usr/local/bin" $path)
 	fpath+=("$DOTFILES/zshcompletions")
@@ -148,3 +152,5 @@ eval "$(fasd --init auto)"
 alias di='fasd -d'
 alias d='dirs -v | head -10'
 
+
+#[[ -s "/home/kubuxu/.gvm/scripts/gvm" ]] && source "/home/kubuxu/.gvm/scripts/gvm"

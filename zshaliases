@@ -5,7 +5,6 @@ alias sudo='sudo '
 alias go-ipfs='cd-go github.com/ipfs/go-ipfs'
 alias gff='git flow feature'
 alias clr='clear'
-alias hgrep='history | grep -i'
 alias vimrc='vim ~/.vimrc'
 alias xflux='xflux -l 51.1 -g 17'
 alias cdtemp='cd $(mktemp -d)'
@@ -16,7 +15,20 @@ alias gcaf='git commit -a --fixup'
 alias gcs='git commit --squash'
 alias gcas='git commit -a --squash'
 alias grbiom='git rebase -i origin/master'
+alias grbom='git rebase origin/master'
+alias gdff='git difftool'
+alias gpr='git pull-request'
 
+# custom greps
+alias hgrep='history | grep -i'
+alias agrep='alias | grep -i'
+
+#mpv
+alias mpv720p='mpv --cache=20000000 --ytdl-format=247+171 '
+
+
+alias go11='/home/kubuxu/git/go/go1.11/bin/go'
 
 # dir aliases
 hash -d go="$HOME/go/src"
+

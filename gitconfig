@@ -7,17 +7,28 @@
 [core]
     attributesfile = ~/.gitattributes
 	excludesfile = /home/kubuxu/.gitignore
+	hooksPath = /home/kubuxu/dotfiles/githooks
 [receive]
 	fsckObjects = true
 [alias]
     cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop\\|release' | xargs -n 1 git branch -d"
 	dsf = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd "$GIT_PREFIX"; git diff --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
 	cmp = "!git checkout master && git pull"
-	pr = "pull-request"
 	fixup = "!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
 [commit]
-	gpgsign = true
+	gpgsign = false
 [rebase]
-	autosquash = true
+	autoSquash = true
 [rerere]
 	enabled = true
+	gpgsign = true
+[merge]
+	conflictstyle = diff3
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[hub]
+	protocol = git

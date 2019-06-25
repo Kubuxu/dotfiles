@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+BADGOMODREGEX='\+replace.*=>\s+[/.]'
+
+exec < /dev/tty
+
+if git ls-files go.mod >/dev/null &&  [[ $(git diff --cached go.mod | grep -E -c "$BADGOMODREGEX") -ne 0 ]]; then
+	git diff --cached go.mod | grep -E "$BADGOMODREGEX"
+	read -p "There are local replace directives in go.mod. Are you sure you want to continue (y/n): " yn
+
+	if echo "$yn" | grep "^[Yy]$" > /dev/null;  then
+		exit 0; #THE USER WANTS TO CONTINUE
+	else
+		exit 1; # THE USER DONT WANT TO CONTINUE SO ROLLBACK
+	fi
+fi
+

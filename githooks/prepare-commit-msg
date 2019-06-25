@@ -1,0 +1,7 @@
+#!/bin/sh
+
+git interpret-trailers \
+  --if-exists doNothing \
+  --trailer "License: MIT" \
+  --trailer "Signed-off-by: $(git config user.name) <$(git config user.email)>" \
+  --in-place "$1"

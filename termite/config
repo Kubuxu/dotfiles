@@ -1,4 +1,5 @@
 [colors]
+scrollback_lines=2000000
 foreground = #839496
 foreground_bold = #eee8d5
 #foreground_dim = #888888
@@ -27,5 +28,6 @@ color14 = #93a1a1
 color15 = #fdf6e3
 
 [options]
-font = FontAwesome 12
-font = Ubuntu Mono derivative Powerline 12
+font = Font Awesome 5 Free 12
+#font = Ubuntu Mono derivative Powerline 12
+font = IBM Plex Mono Medium 10

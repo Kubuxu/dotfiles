@@ -1,5 +1,5 @@
 weather() {
-	curl -4 wttr.in/$1 | less -Sc
+	curl -4 wttr.in/$1 2>/dev/null | less -Sc
 }
 
 for fun in 'ssh' 'mosh' 'hub'; do
@@ -10,8 +10,7 @@ gx-set() {
 	jq ".$1=\"$2\"" package.json | ifne sponge package.json
 }
 
-gx-github() {
-	REPO=$(echo $(pwd) | sed -ne 's|^.*/\(github.com/.\)|\1|p')
+gx-github() { REPO=$(echo $(pwd) | sed -ne 's|^.*/\(github.com/.\)|\1|p')
 	if [[ ! -z ${REPO} ]]; then
 		gx-set author $(echo $REPO | cut -d'/' -f 2)
 		gx-set bugs.URL "https://$REPO/issues"
@@ -23,6 +22,16 @@ gx-init() {
 	gx-github
 }
 
+gx-checkdeps() {
+	gx-go rw
+	gx-go dvcs-deps
+	gx-go uw
+}
+
+gx-last() {
+	cat .gx/lastpubver
+	cut -f' ' -f 2 | ifne xsel
+}
 bak() {
 	for F; do
 		echo "cp" "$F"{,.bak}
@@ -48,7 +57,12 @@ send-terminfo() {
 }
 
 edc() {
-	echo "$@" | dc
+	echo 4 k "$@" p | dc
+}
+
+work_search() {
+ echo "Searching for '$1'"
+ xdg-open "https://github.com/search?q=org%3Aipfs+org%3Alibp2p+org%3Amultiformats+org%3Aprotocol+org%3Aipld+$1&type=Issues"
 }
 
 drop-caches() {
