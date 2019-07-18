@@ -31,8 +31,10 @@ highlight ColorColumn ctermbg=darkgray
 
 " Relative line numbers
 set relativenumber
-" when switching to buffer use already open tabs or open a new one
-set switchbuf=useopen,usetab,newtab
+
+
+set undofile
+set undodir=~/.vim/undodir
 
 
 
@@ -59,9 +61,9 @@ set scrolloff=5
 set hidden
 
 " Remap jkl; to down-up-left-right
-" noremap l h
-" noremap ; l
-" noremap h ;
+"noremap l h
+"noremap ; l
+"noremap h ;
 
 " Fast saving
 map <Leader>w :w<CR>
@@ -73,30 +75,6 @@ colorscheme solarized
 
 execute pathogen#infect()
 
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 1
-set completeopt=longest,menuone
-
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
-
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" SuperTab like snippets behavior.
-imap <expr><TAB>
- \ pumvisible() ? "\<C-n>" :
- \ neosnippet#expandable_or_jumpable() ?
- \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers
 if has('conceal')
@@ -118,19 +96,50 @@ nmap <leader>T :TagbarToggle<CR>
 nnoremap <silent> <leader>o o<Esc>
 nnoremap <silent> <leader>O O<Esc>
 
+" Completion
+let g:neopairs#enable = 1
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+let g:UltiSnipsExpandTrigger="<C-y>"
+let g:UltiSnipsJumpForwardTrigger="<C-k>"
+
+"let g:ulti_expand_or_jump_res = 0 "default value, just set once
+"function! Ulti_ExpandOrJump_and_getRes()
+	"call UltiSnips#ExpandSnippetOrJump()
+	"return g:ulti_expand_or_jump_res
+"endfunction
+
+"set completeopt+=noselect
+inoremap <expr> <C-k> pumvisible() ? "\<C-y>" : "\<C-k>"
+
+"call deoplete#custom#option({
+"			\ 'auto_refresh_delay': 10,
+"			\ 'camel_case': v:true,
+"			\ 'skip_multibyte': v:true,
+"			\ 'prev_completion_mode': 'filter',
+"			\ 'min_pattern_length': 1,
+"			\ 'max_list': 10000,
+"			\ 'skip_chars': ['(', ')', '<', '>'],
+"			\ })
+call deoplete#custom#source('_', 'converters', ['converter_auto_paren'])
+" don't use V. Because then neopairs doesn't work
+"call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+call deoplete#custom#var('omni', 'input_patterns', {
+			\        'go': '[^. *\t]\.\w*',
+			\})
+
+
+au InsertLeave * if pumvisible() == 0 | pclose | endif
 
 " Go
-
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_omni_input_patterns.go = '[^.[:digit:] *\t]\.'
+"let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
 au FileType go nmap <Leader>i <Plug>(go-info)
 
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>l <Plug>(go-metalinter)
 au FileType go nmap <leader>c <Plug>(go-coverage-toggle)
 
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
@@ -143,9 +152,8 @@ au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 
 au FileType go nmap <Leader>s <Plug>(go-implements)
-au FileType go nmap <Leader>m <Plug>(go-metalinter)
 
-let g:go_snippet_engine = "neosnippet"
+let g:go_snippet_engine = "ultisnips"
 let g:go_highlight_operators = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -156,8 +164,9 @@ let g:go_auto_type_info = 0
 
 let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
-" let g:go_fmt_options = "-local github"
-
+let g:go_metalinter_command = "golangci-lint"
+let g:go_info_mode = "gopls"
+let g:go_def_mode = "gopls"
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
@@ -166,6 +175,9 @@ cmap w!! w !sudo tee > /dev/null %
 " set clipboard=unnamed
 
 
+if &diff
+  highlight! link DiffText Search
+endif
 
 " disable arrows
 noremap <Up> <NOP>
@@ -184,6 +196,14 @@ endif
 map <leader>a :Ack<space>
 
 
+" set tags+=~/.vim/tags/cpp
+" set tags+=~/.vim/tags/boost
+" map <C-F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+
+
+" When swiching buffer to named file, first use open buffer
+" then try some tab and if it doesn't work open a new tab.
+set switchbuf=useopen,usetab,newtab
 " Remember things between sessions
 "
 " '20  - remember marks for 20 previous files
@@ -193,6 +213,18 @@ map <leader>a :Ack<space>
 " %    - remember the buffer list (if vim started without a file arg)
 " n    - set name of viminfo file
 set viminfo='20,\"50,:20,/20,%,n~/.viminfo.go
+
+function! ResCur()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call ResCur()
+augroup END
 
 " Define what to save with :mksession
 " blank - empty windows
@@ -204,4 +236,6 @@ set viminfo='20,\"50,:20,/20,%,n~/.viminfo.go
 " winsize - window sizes
 " tabpages - all tab pages
 set sessionoptions=blank,buffers,curdir,folds,help,options,winsize,tabpages
+
+source ~/.regexlist.vim
 
