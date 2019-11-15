@@ -76,7 +76,6 @@ if [[ $ENV_IS_HERE!=yes ]]; then
 	export EDITOR="vim"
 	export VISUAL="$EDITOR"
 	export GO111MODULE=on
-	export GOPROXY='https://proxy.golang.org'
 
 	path=("$HOME/bin" "$GOPATH/bin" "/usr/local/bin" $path)
 	fpath+=("$DOTFILES/zshcompletions")
@@ -145,12 +144,13 @@ source "$DOTFILES/zshcompinstall"
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # fasd
 eval "$(fasd --init auto)"
 alias di='fasd -d'
 alias d='dirs -v | head -10'
+unset GOPROXY
 
-
-#[[ -s "/home/kubuxu/.gvm/scripts/gvm" ]] && source "/home/kubuxu/.gvm/scripts/gvm"
+[[ -s "/home/kubuxu/.gvm/scripts/gvm" ]] && source "/home/kubuxu/.gvm/scripts/gvm"

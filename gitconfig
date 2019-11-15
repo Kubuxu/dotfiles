@@ -1,5 +1,5 @@
 [user]
-	email = kubuxu@protonmail.ch
+	email = kubuxu@protocol.ai
 	name = Jakub Sztandera
 	signingkey = C919C8748A8FFC2B8D3EEEFA9A9AF56F8B3879BA
 [push]
@@ -16,7 +16,7 @@
 	cmp = "!git checkout master && git pull"
 	fixup = "!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
 [commit]
-	gpgsign = false
+	gpgsign = true
 [rebase]
 	autoSquash = true
 [rerere]
