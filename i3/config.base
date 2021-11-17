@@ -45,8 +45,8 @@ bindsym $mod+d exec j4-dmenu-desktop
 # change focus
 bindsym $mod+j focus down
 bindsym $mod+k focus up
-bindsym $mod+l focus left
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -57,8 +57,8 @@ bindsym $mod+Right focus right
 # move focused window
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move left
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -67,7 +67,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+b split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -99,8 +99,8 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec light -A 2.5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 2.5 # decrease screen brightness
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
@@ -197,10 +197,9 @@ assign [class="csgo_linux"] $workspace5
 exec --no-startup-id setxkbmap -layout pl -option caps:escape
 exec --no-startup-id xset r rate 250 30
 #More aggressive behavior, allow for mod+key combos, enable mouse movements
-exec --no-startup-id syndaemon -i 0.2 -K -t -d
+#exec --no-startup-id syndaemon -i 0.2 -K -t -d
 #exec --no-startup-id xflux -l 51.1 -g 17
 #exec --no-startup-id /usr/bin/xautolock -time 5 -locker /home/kubuxu/bin/lock -detectsleep
-exec --no-startup-id [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
 bindsym $mod+Shift+s exec "/home/kubuxu/bin/ipfs-screencap -c -s"
 
@@ -212,4 +211,4 @@ exec --no-startup-id i3-msg 'workspace $workspace1'
 
 
 # Per-application settings
-for_window [class="firefox-developer"] border none
+for_window [class="firefox"] border none

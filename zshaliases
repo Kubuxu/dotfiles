@@ -27,8 +27,8 @@ alias agrep='alias | grep -i'
 alias mpv720p='mpv --cache=20000000 --ytdl-format=247+171 '
 
 
-alias go11='/home/kubuxu/git/go/go1.11/bin/go'
-
 # dir aliases
 hash -d go="$HOME/go/src"
 
+alias taskw='task add pro:lotus +work'
+alias my-ip='drill myip.opendns.com @resolver1.opendns.com | grep "[[:space:]]A[[:space:]]" | cut -d "	" -f5'

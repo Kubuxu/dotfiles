@@ -1,5 +1,4 @@
 [colors]
-scrollback_lines=2000000
 foreground = #839496
 foreground_bold = #eee8d5
 #foreground_dim = #888888
@@ -9,7 +8,6 @@ cursor = #93a1a1
 # if unset, will reverse foreground and background
 #highlight = #839496
 
-# colors from color0 to color254 can be set
 color0 = #073642
 color1 = #dc322f
 color2 = #859900
@@ -28,6 +26,7 @@ color14 = #93a1a1
 color15 = #fdf6e3
 
 [options]
+scrollback_lines = 100000
 font = Font Awesome 5 Free 12
 #font = Ubuntu Mono derivative Powerline 12
 font = IBM Plex Mono Medium 10

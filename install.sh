@@ -5,6 +5,7 @@ mkdir "$HOME/.npm-global"
 
 mkdir -p "$HOME/.config/i3/"
 ln -s "$DOTFILES/i3/config.base" "$HOME/.config/i3/config.base"
+ln -s "$DOTFILES/i3/i3blocks.conf" "$HOME/.config/i3/i3blocks.conf"
 ln -s "$DOTFILES/j4-make-config/themes" "$HOME/.config/i3/themes"
 "$DOTFILES/j4-make-config/j4-make-config" -r solarized
 

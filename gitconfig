@@ -8,6 +8,7 @@
     attributesfile = ~/.gitattributes
 	excludesfile = /home/kubuxu/.gitignore
 	hooksPath = /home/kubuxu/dotfiles/githooks
+#	pager = delta --dark --theme 'Solarized (dark)'
 [receive]
 	fsckObjects = true
 [alias]
@@ -32,3 +33,7 @@
 	prompt = false
 [hub]
 	protocol = git
+[pull]
+	ff = only
+[init]
+	defaultBranch = master

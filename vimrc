@@ -1,3 +1,4 @@
+syntax enable
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -20,12 +21,15 @@ set hlsearch
 set exrc
 set secure
 
+" update titles
+set title 
+
 " Save on make
 set autowrite
 
 
-" Highlight 80 comlumn
-set colorcolumn=80
+" Highlight 100 comlumn
+set colorcolumn=100
 highlight ColorColumn ctermbg=darkgray
 
 
@@ -44,7 +48,6 @@ filetype plugin on
 filetype plugin indent on
 
 " Switch syntax highlighting on
-syntax on
 " Set leader
 let mapleader = ","
 " Enable file type detection and do language-dependent indenting.
@@ -72,6 +75,7 @@ vmap <Leader>w <ESC><ESC>:w<CR>
 
 set background=dark
 colorscheme solarized
+highlight! link SignColumn LineNr
 
 execute pathogen#infect()
 
@@ -97,11 +101,11 @@ nnoremap <silent> <leader>o o<Esc>
 nnoremap <silent> <leader>O O<Esc>
 
 " Completion
-let g:neopairs#enable = 1
+"let g:neopairs#enable = 0
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
-let g:UltiSnipsExpandTrigger="<C-y>"
-let g:UltiSnipsJumpForwardTrigger="<C-k>"
+"let g:deoplete#enable_smart_case = 1
+"let g:UltiSnipsExpandTrigger="<C-y>"
+"let g:UltiSnipsJumpForwardTrigger="<C-k>"
 
 "let g:ulti_expand_or_jump_res = 0 "default value, just set once
 "function! Ulti_ExpandOrJump_and_getRes()
@@ -110,8 +114,17 @@ let g:UltiSnipsJumpForwardTrigger="<C-k>"
 "endfunction
 
 "set completeopt+=noselect
-inoremap <expr> <C-k> pumvisible() ? "\<C-y>" : "\<C-k>"
+"inoremap <expr> <C-k> pumvisible() ? "\<C-y>" : "\<C-k>"
 
+
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+"let g:neosnippet#enable_snipmate_compatibility = 1
+
+
+call deoplete#custom#option('smart_case', 1)
 "call deoplete#custom#option({
 "			\ 'auto_refresh_delay': 10,
 "			\ 'camel_case': v:true,
@@ -121,7 +134,7 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-y>" : "\<C-k>"
 "			\ 'max_list': 10000,
 "			\ 'skip_chars': ['(', ')', '<', '>'],
 "			\ })
-call deoplete#custom#source('_', 'converters', ['converter_auto_paren'])
+call deoplete#custom#source('omni', 'converters', ['converter_auto_paren'])
 " don't use V. Because then neopairs doesn't work
 "call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 call deoplete#custom#var('omni', 'input_patterns', {
@@ -153,7 +166,7 @@ au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 
 au FileType go nmap <Leader>s <Plug>(go-implements)
 
-let g:go_snippet_engine = "ultisnips"
+let g:go_snippet_engine = "neosnippet"
 let g:go_highlight_operators = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -237,5 +250,5 @@ augroup END
 " tabpages - all tab pages
 set sessionoptions=blank,buffers,curdir,folds,help,options,winsize,tabpages
 
-source ~/.regexlist.vim
-
+source ~/dotfiles/regexlist.vim
+:let g:session_autoload = 'no'
